@@ -49,14 +49,7 @@ RUN apt -y install libgconf2-4
 
 COPY . .
 
+# https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
 RUN apt-get -y install jq
-ENV INSTALL_DIR "/usr/local/bin"
-
-RUN json=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest)
-RUN url=$(echo "$json" | jq -r '.assets[].browser_download_url | select(contains("linux64"))')
-RUN curl -s -L "$url" | tar -xz
-RUN chmod +x geckodriver
-RUN mv geckodriver "$INSTALL_DIR"
-RUN echo "installed geckodriver binary in $INSTALL_DIR"
 
 CMD ["bash"]
