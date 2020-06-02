@@ -52,4 +52,6 @@ COPY . .
 # https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
 RUN apt-get -y install jq
 
+RUN aot-get -y install firefox
+
 CMD ["bash"]

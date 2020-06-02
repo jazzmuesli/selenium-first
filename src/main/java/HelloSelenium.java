@@ -24,6 +24,8 @@ public class HelloSelenium {
 	public static void run(WebDriver driver) throws IOException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		try {
+			System.setProperty("webdriver.chrome.logfile", "/tmp/chromedriver.log");
+			System.setProperty("webdriver.chrome.verboseLogging", "true");
 			driver.get("https://google.com/ncr");
 			driver.findElement(By.name("q")).sendKeys("cheese" + Keys.ENTER);
 			WebElement firstResult = wait.until(presenceOfElementLocated(By.cssSelector("h3>div")));
