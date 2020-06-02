@@ -34,7 +34,7 @@ RUN apt-get -y install jq
 RUN apt-get -y install firefox
 
 # Set up Chromedriver Environment variables
-ENV CHROMEDRIVER_VERSION 84.0.4147.30 
+ENV CHROMEDRIVER_VERSION 83.0.4103.39 
 ENV CHROMEDRIVER_DIR /chromedriver
 RUN mkdir $CHROMEDRIVER_DIR
 

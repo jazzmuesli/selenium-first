@@ -15,10 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.io.Files;
 
-/**
- * brew install geckodriver
- *
- */
 public class HelloSelenium {
 
 	public static void run(WebDriver driver) throws IOException {
@@ -26,10 +22,9 @@ public class HelloSelenium {
 		try {
 			System.setProperty("webdriver.chrome.logfile", "/tmp/chromedriver.log");
 			System.setProperty("webdriver.chrome.verboseLogging", "true");
-			driver.get("https://google.com/ncr");
-			driver.findElement(By.name("q")).sendKeys("cheese" + Keys.ENTER);
-			WebElement firstResult = wait.until(presenceOfElementLocated(By.cssSelector("h3>div")));
-			System.out.println(firstResult.getAttribute("textContent"));
+			driver.get("https://github.com/jazzmuesli/selenium-first");
+//			googleCheese(driver, wait);
+		} finally {
 			File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			System.out.println(scrFile);
 			File dstDir = new File("screenshots");
@@ -38,8 +33,13 @@ public class HelloSelenium {
 					driver.getClass().getSimpleName() + "_" + System.currentTimeMillis() + ".png");
 			Files.copy(scrFile, dstFile);
 			System.out.println(dstFile);
-		} finally {
 			driver.quit();
 		}
+	}
+
+	protected static void googleCheese(WebDriver driver, WebDriverWait wait) {
+		driver.findElement(By.name("q")).sendKeys("cheese" + Keys.ENTER);
+		WebElement firstResult = wait.until(presenceOfElementLocated(By.cssSelector("h3>div")));
+		System.out.println(firstResult.getAttribute("textContent"));
 	}
 }
