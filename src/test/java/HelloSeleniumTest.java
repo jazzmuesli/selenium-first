@@ -10,7 +10,7 @@ public class HelloSeleniumTest {
 		HelloSelenium.run(new FirefoxDriver());
 	}
 
-	@Ignore//TODO: fix chrome
+//	@Ignore//TODO: fix chrome
 	@Test
 	public void testChrome() throws Exception {
 		HelloSelenium.run(new ChromeDriver());

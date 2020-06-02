@@ -25,8 +25,16 @@ RUN echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/so
 RUN apt-get update -y
 RUN apt-get install -y google-chrome-stable
 
+RUN apt -y install libgconf2-4
+
+
+# https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
+RUN apt-get -y install jq
+
+RUN apt-get -y install firefox
+
 # Set up Chromedriver Environment variables
-ENV CHROMEDRIVER_VERSION 2.19
+ENV CHROMEDRIVER_VERSION 84.0.4147.30 
 ENV CHROMEDRIVER_DIR /chromedriver
 RUN mkdir $CHROMEDRIVER_DIR
 
@@ -44,14 +52,6 @@ ENV HOME /root
 
 # Define working directory.
 WORKDIR /root
-
-RUN apt -y install libgconf2-4
-
-
-# https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
-RUN apt-get -y install jq
-
-RUN apt-get -y install firefox
 
 COPY install_firefox.sh /root/
 RUN /root/install_firefox.sh
