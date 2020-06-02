@@ -47,11 +47,14 @@ WORKDIR /root
 
 RUN apt -y install libgconf2-4
 
-COPY . .
 
 # https://askubuntu.com/questions/870530/how-to-install-geckodriver-in-ubuntu
 RUN apt-get -y install jq
 
-RUN aot-get -y install firefox
+RUN apt-get -y install firefox
 
+COPY install_firefox.sh /root/
+RUN /root/install_firefox.sh
+
+COPY . . 
 CMD ["bash"]
